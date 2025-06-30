@@ -15,9 +15,25 @@
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+  <style>
+  button{
+    text-decoration: none;
+  }
+
+  a{
+      text-decoration: none;
+      color: black;
+  }
+  </style>
   </head>
 
   <body>
+  <% flash.each do |key, message| %>
+      <div>
+        <strong><%= key.capitalize %>:</strong> <%= message %>
+      </div>
+    <% end %>
     <%= yield %>
+  
   </body>
 </html>

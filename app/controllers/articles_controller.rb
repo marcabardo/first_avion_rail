@@ -5,7 +5,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
+    @comments = @article.comments
+    @comment = @article.comments.build
   end
 
    def new
@@ -13,24 +14,20 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    #binding.b
     @article = Article.new(article_params)
-
     if @article.save
-      redirect_to @article
+      redirect_to @article, notice: "Article posted"
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def edit
-    @article = Article.find(params[:id])
-  end
+  def edit; end
 
   def update
      @article = Article.find(params[:id])
     if @article.update(article_params)
-      redirect_to @article
+      redirect_to @article,  notice: "Article edited"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -38,7 +35,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    redirect_to root_path, status: :see_other
+    redirect_to root_path, status: :see_other,  notice: "Artcile deleted"
   end
 
   private

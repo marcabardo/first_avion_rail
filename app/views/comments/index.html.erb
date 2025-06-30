@@ -1,0 +1,11 @@
+<h1>Comments for "<%= @article.title %>" Article</h1>
+
+<% @comments.each do |comment| %>
+  <div style="margin-bottom: 1rem;">
+    <p><strong>Commenter:</strong> <%= comment.commenter %></p>
+    <p><strong>Comment:</strong> <%= comment.body %></p>
+    <button><%= link_to "Manage Comment", article_comment_path(@article, comment), method: :get %></button>
+  </div>
+<% end %>
+
+<button><%= link_to "Back to Article", article_path(@article) %></button>

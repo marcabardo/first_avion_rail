@@ -1,18 +1,17 @@
+
 <button><%= link_to "Home", articles_path %></button>
 
 <h1><%= @article.title %></h1>
-
 <p><%= @article.body %></p>
 
-
-  <button><%= link_to "Edit", edit_article_path(@article) %></button>
- <button><%= link_to "Destroy", article_path(@article), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></button>
+<button><%= link_to "Edit", edit_article_path(@article) %></button>
+<button>
+  <%= link_to "Destroy", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+</button>
 
 <h2>Comments</h2>
-<%= render @article.comments %>
+
+<button><%= link_to "View All Comments", article_comments_path(@article) %></button>
 
 <h2>Add a comment:</h2>
 <%= render "comments/form", article: @article %>
